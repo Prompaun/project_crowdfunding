@@ -7,7 +7,7 @@ import { EditionMetadataWithOwnerOutputSchema } from '@thirdweb-dev/sdk';
 const StateContext = createContext();
 
 export const StateContextProvider = ({ children }) => {
-  const { contract } = useContract('0xa37E832A4B7d2f727855DaA8aF2A4c1b0E092FeF');
+  const { contract } = useContract('0x5b444416C49e21549dc4D32e0bae2B46a2545a5C');
   const { mutateAsync: createCampaign } = useContractWrite(contract, 'createCampaign');
 
   const address = useAddress();
