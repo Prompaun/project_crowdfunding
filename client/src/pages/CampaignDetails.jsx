@@ -13,6 +13,7 @@ const CampaignDetails = () => {
   const { donate, getDonations, contract, address } = useStateContext();
 
   const [isLoading, setIsLoading] = useState(false);
+  const [finish, setFinish] = useState(false)
   const [amount, setAmount] = useState('');
   const [donators, setDonators] = useState([]);
 
@@ -41,7 +42,7 @@ const CampaignDetails = () => {
     <div>
       {isLoading && <Loader />}
 
-      <div className="w-full flex md:flex-row flex-col mt-10 gap-[30px]">
+      <div className="w-full flex md:flex-col flex-col mt-10 gap-[30px]">
         <div className="flex-1 flex-col">
           <img src={state.image} alt="campaign" className="w-full h-[410px] object-cover rounded-xl"/>
           <div className="relative w-full h-[5px] bg-[#3a3a43] mt-2">
@@ -50,7 +51,7 @@ const CampaignDetails = () => {
           </div>
         </div>
 
-        <div className="flex md:w-[150px] w-full flex-wrap justify-between gap-[30px]">
+        <div className="flex md:w-full flex-row justify-between gap-5">
           <CountBox title="Days Left" value={remainingDays} />
           <CountBox title={`Raised of ${state.target}`} value={state.amountCollected} />
           <CountBox title="Total Backers" value={donators.length} />
@@ -73,13 +74,31 @@ const CampaignDetails = () => {
             </div>
           </div>
 
-          <div>
-            <h4 className="font-epilogue font-semibold text-[18px] text-white uppercase">Story</h4>
+          <div className="flex lg:flex-row gap-10">
+            <div>
+              <h4 className="font-epilogue font-semibold text-[18px] text-white uppercase">Story</h4>
 
               <div className="mt-[20px]">
                 <p className="font-epilogue font-normal text-[16px] text-[#808191] leading-[26px] text-justify">{state.description}</p>
               </div>
+            </div>
+            <div>
+              <h4 className="font-epilogue font-semibold text-[18px] text-white uppercase">Status</h4>
+
+              <div className="mt-[20px]">
+                {`${calculateBarPercentage(state.target, state.amountCollected)}%` >= "100%" ? (
+                <p className="font-epilogue font-normal text-[16px] text-[#32CD32] leading-[26px] text-justify">
+                  ถึงยอดที่ตั้งไว้แล้ว
+                </p>) 
+                : (
+                <p className="font-epilogue font-normal text-[16px] text-[#FF0000] leading-[26px] text-justify">
+                  ยังไม่ถึงยอดที่ตั้งไว้
+                  </p>)}
+              </div>
+            </div>
           </div>
+          
+
 
           <div>
             <h4 className="font-epilogue font-semibold text-[18px] text-white uppercase">Donators</h4>
