@@ -27,6 +27,17 @@ const FundCard = ({ owner, title, description, target, deadline, amountCollected
             <p className="mt-[3px] font-epilogue font-normal text-[12px] leading-[18px] text-[#808191] sm:max-w-[120px] truncate">Raised of {target}</p>
           </div>
           <div className="flex flex-col">
+            <h4 className="font-epilogue font-semibold text-[14px] text-[#b2b3bd] leading-[22px]">Status</h4>
+            {amountCollected >= target ? (
+                <p className="font-epilogue font-normal text-[12px] text-[#32CD32] leading-[18px] text-justify">
+                  ถึงยอดที่ตั้งไว้แล้ว
+                </p>) 
+                : (
+                <p className="font-epilogue font-normal text-[12px] text-[#FF0000] leading-[18px] text-justify">
+                  ยังไม่ถึงยอดที่ตั้งไว้
+                  </p>)}
+          </div>
+          <div className="flex flex-col">
             <h4 className="font-epilogue font-semibold text-[14px] text-[#b2b3bd] leading-[22px]">{remainingDays}</h4>
             <p className="mt-[3px] font-epilogue font-normal text-[12px] leading-[18px] text-[#808191] sm:max-w-[120px] truncate">Days Left</p>
           </div>
